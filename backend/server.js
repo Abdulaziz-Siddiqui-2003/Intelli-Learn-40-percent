@@ -18,14 +18,19 @@ app.use(cors()); // Allow cross-origin requests
 // 4. Database Connection
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI);
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      // 1. Force IPv4 (Fixes the Render/Atlas connection issue)
+      family: 4, 
+      // 2. Increase timeout so it doesn't give up too quickly
+      serverSelectionTimeoutMS: 10000, 
+    });
+
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);
   }
 };
-
 connectDB();
 
 // 5. Routes
