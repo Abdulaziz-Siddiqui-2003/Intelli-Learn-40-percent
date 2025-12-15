@@ -1,0 +1,14 @@
+# Ignore dependencies in both folders
+node_modules/
+*/node_modules/
+
+# Ignore Environment variables (Security!)
+.env
+*/.env
+
+# Logs and OS junk
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
